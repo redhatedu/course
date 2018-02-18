@@ -33,7 +33,6 @@ git pull  （更新）
 
 
 #####################################################</br>
-
 #Remove materials from repo（从仓库中删除资料，需要有写权限）
 
 1.# git rm shell/test.txt
