@@ -1,13 +1,22 @@
+#####################################################
 # course
 All materials for course
+#####################################################
 
+
+
+
+#####################################################
 #download all materials
 
 git clone https://github.com/redhatedu/course.git
 
 git pull
+#####################################################
 
 
+
+#####################################################
 #Add materials to repo
 
 1.# mkdir shell
@@ -19,9 +28,12 @@ git pull
 4.# git commit -m 'add test file'
 
 5.# git push
+#####################################################
 
 
 
+
+#####################################################
 #Remove materials from repo
 
 1.# git rm shell/test.txt
@@ -29,3 +41,4 @@ git pull
 2.# git commit -m 'remove test file'
 
 3.# git push
+#####################################################
