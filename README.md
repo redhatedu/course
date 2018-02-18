@@ -12,6 +12,7 @@ git clone https://github.com/redhatedu/course.git
 4.# git commit -m 'add test file'
 5.# git push
 
+
 #Remove materials from repo
 1.# git rm shell/test.txt
 2.# git commit -m 'remove test file'
