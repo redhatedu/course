@@ -8,10 +8,8 @@ Copyright @丁丁历险 $2018$
 #####################################################
 
 #download all materials（下载参考资料）
-
-git clone https://github.com/redhatedu/course.git （克隆仓库）
-
-git pull  （更新）
+    git clone https://github.com/redhatedu/course.git （克隆仓库）
+    git pull  （更新）
 
 #####################################################
 
@@ -20,8 +18,7 @@ git pull  （更新）
 #####################################################
 
 #Add materials to repo（删除资料到仓库，需要有写权限）
-
-1.# mkdir shell
+  1.# mkdir shell
 
 2.# echo "test" > shell/test.txt
 
