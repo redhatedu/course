@@ -6,6 +6,7 @@ All materials for course
 git clone https://github.com/redhatedu/course.git
 
 
+
 #Add materials to repo
 
 1.# mkdir shell
@@ -17,6 +18,7 @@ git clone https://github.com/redhatedu/course.git
 4.# git commit -m 'add test file'
 
 5.# git push
+
 
 
 #Remove materials from repo
