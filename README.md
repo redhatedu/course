@@ -1,6 +1,7 @@
-# course
-All materials for course</br>
-Copyright@丁丁历险
+# About course(关于)
+All materials for course(本仓库中有课程相关资料)</br>
+Copyright@丁丁历险</br>
+@2018
 
 
 
