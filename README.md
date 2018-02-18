@@ -8,9 +8,9 @@ Copyright @丁丁历险 $2018$
 #####################################################</br>
 #download all materials（下载参考资料）
 
-git clone https://github.com/redhatedu/course.git （克隆仓库）
+1.# git clone https://github.com/redhatedu/course.git （克隆仓库）
 
-git pull  （更新）
+2.# git pull  （更新）
 </br>#####################################################</br>
 
 
