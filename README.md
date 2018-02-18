@@ -6,13 +6,13 @@ git clone https://github.com/redhatedu/course.git
 
 
 #Add materials to repo
-mkdir shell
-echo "test" > shell/test.txt
-git add shell/test.txt
-git commit -m 'add test file'
-git push
+1.# mkdir shell
+2.# echo "test" > shell/test.txt
+3.# git add shell/test.txt
+4.# git commit -m 'add test file'
+5.# git push
 
 #Remove materials from repo
-git rm shell/test.txt
-git commit -m 'remove test file'
-git push
+1.# git rm shell/test.txt
+2.# git commit -m 'remove test file'
+3.# git push
