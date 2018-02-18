@@ -1,25 +1,25 @@
-# About course(关于)
-All materials for course(本仓库中有课程相关资料)</br>
-Copyright@丁丁历险</br>
-@2018
+# About course(使用说明)
+All materials for course(本仓库目录树下有相关资料)</br>
+Copyright @丁丁历险 $2018$
 
-
-
-#####################################################
-
-#download all materials
-
-git clone https://github.com/redhatedu/course.git
-
-git pull
-
-#####################################################
 
 
 
 #####################################################
 
-#Add materials to repo
+#download all materials（下载参考资料）
+
+git clone https://github.com/redhatedu/course.git （克隆仓库）
+
+git pull  （更新）
+
+#####################################################
+
+
+
+#####################################################
+
+#Add materials to repo（删除资料到仓库，需要有写权限）
 
 1.# mkdir shell
 
@@ -38,7 +38,7 @@ git pull
 
 #####################################################
 
-#Remove materials from repo
+#Remove materials from repo（从仓库中删除资料，需要有写权限）
 
 1.# git rm shell/test.txt
 
