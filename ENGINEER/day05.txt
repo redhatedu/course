@@ -4,8 +4,9 @@
 远程班级下载笔记方法:
 # yum -y install git
 # git clone https://github.com/redhatedu/course        //完整下载(第一次使用必须操作)
-# git pull                                             //更新下载
-# git checkout 文件名                                  //下载某一个文件
+# cd course
+# git pull                                             //更新下载(必须在course目录下执行)
+# git checkout 文件名                                  //下载某一个文件(必须在course目录下执行)
 #############################################################################
 
 
