@@ -1,11 +1,11 @@
 #############################################################################
 本地班级下载笔记方法:
-# firefox ftp://172.40.50.118/share/ENGINEER/		//根据需要有选择下载
+# firefox ftp://172.40.50.118/share/ENGINEER/         //根据需要有选择下载
 远程班级下载笔记方法:
 # yum -y install git
-# git clone https://github.com/redhatedu/course  //完整下载(第一次使用必须操作)
-# git pull										 //更新下载
-# git checkout 文件名							 //下载某一个文件
+# git clone https://github.com/redhatedu/course       //完整下载(第一次使用必须操作)
+# git pull                                            //更新下载
+# git checkout 文件名                                 //下载某一个文件
 #############################################################################
 
 
