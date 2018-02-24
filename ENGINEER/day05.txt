@@ -133,15 +133,49 @@ MariaDB [(nb)]> insert into info values
 ->(2,'dachui','654321');
 
 MariaDB [nb]> select * from info;
-//查看info表的所有数据
+//查看info表的所有数据[表名称为info]
 MariaDB [(nb)]> insert into info values
 ->(3,'jerry','123456'),
 ->(4,'lucy','123456');
+MariaDB [nb]> drop table info;
+//删除数据表[表名称为info]
+MariaDB [nb]>exit
 
++++++++++++++++++++++++++++++++++++++++
+数据库的备份与还原
+# mysqldump -uroot -p123456 nb > my.bak
+//把名称为nb的数据库备份，备份到my.bak文件
 
+###备份后可以进入数据库把数据删除(可选操作)####
 
+# mysql -uroot -p123456 nb < my.bak
+//使用my.bak这个备份文件，还原名称为nb的数据库
+++++++++++++++++++++++++++++++++++++++++
 
+默认mariadb数据库仅有一个账户(root)
+创建新的账户
+# mysql -u root -p123456
+MariaDB [(none)]> grant  all  on  nb.* 
+-> to  tom@'localhost' 
+-> identified  by  '123456';
+//授予tom这个账户，对nb数据库下的所有表的所有权限
+//grant all里面的all是所有权限
+//可以写具体的指令[select,insert]
+//tom@'172.25.0.10'表示tom只能从本机登陆数据库
+//identified by设置密码
+MariaDB [(none)]>exit
+# mysql -u tom -p123456
 
+++++++++++++++++++++++++++++++++++
+表记录的操作（表数据的操作）
+MariaDB [(none)]> use nb;
+MariaDB [(nb)]> select * from info;
+//查看表中的所有[info是表名]
+MariaDB [(nb)]> select name,password from info;
+//仅查看表中的用户和密码信息[不显示id信息]
+MariaDB [(nb)]> select * from info 
+-> where password='123456'
+//查看info表中password是123456的所有数据
 
 
 
