@@ -97,11 +97,34 @@ MariaDB [mysql]> show tables;
 //查看有哪些数据表
 MariaDB [mysql]> select * from user;
 //查看数据表里的数据
+MariaDB [mysql]> exit
+//退出数据库系统
 
 
+# mysqladmin -uroot password '123456'
+//给mariadb数据库的管理员root修改密码,密码为123456
 
+# mysql    //直接登陆数据库会失败
+# mysql -uroot -p123456  //使用用户与密码登陆
 
+MariaDB [(none)]> create database b;
+//创建一个新的数据库，名称为b
+MariaDB [(none)]> show databases;
+MariaDB [(none)]> drop database b;
+//删除某个数据库
+MariaDB [(none)]> create database nb;
+//提示，你创建的数据库都在/var/lib/mysql目录
 
+MariaDB [(none)]> use nb;
+MariaDB [(nb)]>  create table info
+->(id int,
+->name varchar(10),
+->password varchar(20));
+//创建一个表,表名是info，这个表有3列
+//第1列是id，类型是数字
+//第2列是name，类型是字符串,10位
+//第3列是password，类型是字符串，20位
+MariaDB [(nb)]> describe info;
 
 
 
