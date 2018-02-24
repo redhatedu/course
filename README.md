@@ -40,6 +40,7 @@ http://blog.51cto.com/manual
 
 
 #####################################################
+
 #Remove materials from repo(从仓库中删除资料，需要有写权限)
 
 1.# git rm shell/test.txt
@@ -47,4 +48,5 @@ http://blog.51cto.com/manual
 2.# git commit -m 'remove test file'
 
 3.# git push
+
 #####################################################
