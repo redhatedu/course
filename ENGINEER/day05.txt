@@ -126,9 +126,17 @@ MariaDB [(nb)]>  create table info
 //第3列是password，类型是字符串，20位
 MariaDB [(nb)]> describe info;
 
+MariaDB [(nb)]> insert into info values
+->(1,'tom','123456');
+//往info这个表里查入数据，id号,名字，密码
+MariaDB [(nb)]> insert into info values
+->(2,'dachui','654321');
 
-
-
+MariaDB [nb]> select * from info;
+//查看info表的所有数据
+MariaDB [(nb)]> insert into info values
+->(3,'jerry','123456'),
+->(4,'lucy','123456');
 
 
 
