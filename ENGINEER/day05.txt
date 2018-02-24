@@ -177,5 +177,34 @@ MariaDB [(nb)]> select * from info
 -> where password='123456'
 //查看info表中password是123456的所有数据
 
+MariaDB [(nb)]>update info 
+-> set password='123'    //要修改的内容
+-> where name='lily';		//条件
+//更新info表[info是表名称]
+//仅当用户名是lily时才更新她的密码为123
+
+MariaDB [(nb)]>delete from info where id=3;
+//where指定条件，当id是3时，把这条数据删除
+
+
+MariaDB [(nb)]> select * from info 
+-> where password='123456' and id=1;
+//查看info表中的数据
+//条件时密码为123456并且id等于1
+
+多表查询
+MariaDB [(nb)]> SELECT count(*) 
+-> FROM base,location
+-> WHERE base.name="Barbara" AND
+-> location.city="Sunnyvale" AND
+-> base.id=location.id;
+
+
+
+
+
+
+
+
 
 
