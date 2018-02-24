@@ -55,11 +55,18 @@ WWN not valid as: iqn, naa, eui，
 
 		#firewall-cmd --set-default-zone=trusted
 
-
-
-
-
-
+		c)客户端访问共享(在desktop操作）
+		# lsblk
+		# yum -y install iscsi-initiator-utils
+		//在实验环境可以跳过，生产环境需要确认
+		# vim /etc/iscsi/initiatorname.iscsi
+InitiatorName=iqn.2018-02.com.example:desktop0
+	//注意在这里给客户端配置访问口令，一定要与服务器的ACL一致
+		# man iscsiadm   //找参考命令，在最后
+		# iscsiadm --mode discoverydb --type sendtargets --portal 172.25.0.11 --discover
+		//发现对方服务器上的共享
+		#iscsiadm --mode node --targetname iqn.2018-02.com.example:data --portal 172.25.0.11:3260 --login
+		//挂载172.25.0.11服务器上的共享iqn.2018-02.com.example:data
 
 
 
