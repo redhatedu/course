@@ -1,7 +1,7 @@
 # About course(使用说明)
 All materials for course(本仓库目录树下有相关配套资料)</br>
 Copyright @丁丁历险 $2018$
-
+http://blog.51cto.com/manual
 
 
 
