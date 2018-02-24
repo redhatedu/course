@@ -69,9 +69,34 @@ InitiatorName=iqn.2018-02.com.example:desktop0
 		//发现对方服务器上的共享
 		#iscsiadm --mode node --targetname iqn.2018-02.com.example:data --portal 172.25.0.11:3260 --login
 		//挂载172.25.0.11服务器上的共享iqn.2018-02.com.example:data
+		//如果挂载提示authentication，口令不对
+		# systemctl restart iscsid
 
 
+++++++++++++++++++++++++++++++++++++++++++
+DB(database)数据库：存放数据的地方
+DBMS(数据库管理系统）是具体的产品：
+如：excel,access,mysql,sql-server,oracle
+MySQL AB----->Sun MySQL---->Oralce MySQL
+MariaDB==MySQL
+RHEL7(内置的数据库是MariaDB)
 
+在server0操作
+# yum -y install mariadb-server mairadb
+//mariadb-server服务器
+//mairadb客户端
+//使用客户端软件连接数据库服务器做增，删，改，查操作
+
+# systemctl start mariadb   //启动服务
+# mysql
+MariaDB [(none)]> show databases;
+//查看有哪些数据库(数据库就是目录)
+MariaDB [(none)]> use mysql;
+//进入数据库(mysql)
+MariaDB [mysql]> show tables;
+//查看有哪些数据表
+MariaDB [mysql]> select * from user;
+//查看数据表里的数据
 
 
 
