@@ -63,6 +63,8 @@ WWN not valid as: iqn, naa, eui，
 InitiatorName=iqn.2018-02.com.example:desktop0
 	//注意在这里给客户端配置访问口令，一定要与服务器的ACL一致
 		# man iscsiadm   //找参考命令，在最后
+//Ctrl+Shift++放大终端
+//Ctrl+-				缩小终端
 		# iscsiadm --mode discoverydb --type sendtargets --portal 172.25.0.11 --discover
 		//发现对方服务器上的共享
 		#iscsiadm --mode node --targetname iqn.2018-02.com.example:data --portal 172.25.0.11:3260 --login
