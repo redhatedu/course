@@ -16,6 +16,10 @@ SMB,NFS共享目录
 backstore：后端真正的存储设备(实物)
 target:共享名(虚拟)
 lun:绑定、关联存储设备
+target的共享名有要求[要符合iqn规范]:
+iqn.年-月.反转域名:任意字串
+如:iqn.2018-02.com.example:data
+
 
 实验步骤：
 	a)在server0上准备一个磁盘分区(vdb1)3G
@@ -27,6 +31,29 @@ lun:绑定、关联存储设备
 		> +3G			//大小
 		> w				//保存退出
 
+	b)安装软件包，修改配置
+		# yum -y install targetcli
+		# targetcli
+		# ls
+		# cd /
+		# backstores/block create back_store /dev/vdb1	
+		//把刚刚分的分区加入后端存储
+		# iscsi/ create iqn.2018-02.com.example:data
+		//创建一个iscsi共享（共享名称)
+注意：创建iscsi共享名时如果提示：
+WWN not valid as: iqn, naa, eui，
+则说明名称不符合规则
+		# iscsi/iqn.2018-02.com.example:data/tpg1/luns create /backstores/block/back_store 
+		//把共享名和后端的设备通过lun关联在一起
+		#iscsi/iqn.2018-02.com.example:data/tpg1/acls create iqn.2018-02.com.example:desktop0
+		//创建了一个访问的口令:iqn.2018-02.com.example:desktop0
+		//以后仅知道口令的客户端才可以访问共享
+		# iscsi/iqn.2018-02.com.example:data/tpg1/portals create 172.25.0.11
+		//以后客户端访问本机的172.25.0.11的3260端口旧可以访问到共享
+		# saveconfig
+		# exit
+
+		#firewall-cmd --set-default-zone=trusted
 
 
 
