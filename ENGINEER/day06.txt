@@ -137,5 +137,44 @@ Require ip 172.25.254.250 172.25.0.250
 验证结果（不同的电脑访问网站的图片，结果不一样）
 #firefox http://server0.example.com/jpg/a.jpg
 
+++++++++++++++++++++++++++++++++++++++
+SELinux（安全）
+
+一般系统安全都是通过账户权限
+美国国家安全局（SELinux），内置到Linux内核
+SELinux控制每个软件能否读写某些资料
+
+SELinux有安全上下文件
+# ls -Z
+//会发现每个文件或目录都有一个标签
+//这个标签控制了哪些程序能读什么表取
+
+如：SELinux设置规则说
+httpd这个软件，只能读写有httpd_sys_content_t
+
+备注：在计算机中mv移动文件，权限会被保留
+          在计算机中cp拷贝文件，权限不会保留
+在server主机操作：
+# cd /root/
+# echo "nb" > nb.html
+# ls -Z  nb.html
+# mv nb.html  /var/www/html/
+客户端访问：
+#firefox http://server0.example.com/nb.html
+//因为SELinux的标签不对，所有无法访问
+
+在server主机
+# chcon -R -t 标签内容   文件或目录名
+# chcon -R -t httpd_sys_content_t /var/www/html/nb.html
+
+
+
+
+
+
+
+
+
+
 
 
