@@ -111,10 +111,31 @@ firefox http://server0.example.com/test.html
 firefox http://server0.example.com/haha/
 
 
++++++++++++++++++++++++++++++++++
+网站的目录结构（ACL访问控制）
+ACL的语法格式如下：
+<Directory 目录的绝对路径>
+Require all denied|granted
+Require ip IP或网段地址 .. ..
+</Directory>
 
+在server上操作：
+#mkdir /var/www/html/jpg/
+#find / -name "*.jpg"
+#把找的图片，复制一份到/var/www/html/jpg/a.jpg
+#firefox http://server0.example.com/jpg/a.jpg
 
+#vim /etc/httpd/conf.d/server.conf
+... ...
+<Directory "/var/www/html/jpg">
+Require ip 172.25.254.250 172.25.0.250
+</Directory>
+//设置访问控制#ifconfig |grep 172.25
+//仅允许172.25.0.250和172.25.254.250访问图片
+#systemctl restart httpd
 
-
+验证结果（不同的电脑访问网站的图片，结果不一样）
+#firefox http://server0.example.com/jpg/a.jpg
 
 
 
