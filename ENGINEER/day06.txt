@@ -37,6 +37,65 @@ web服务器【把某个目录共享】放网页文件.html
 </body>
 </html>
 
+++++++++++++++++++++++++++++++++++
+httpd的配置文件:
+/etc/httpd/conf/httpd.conf      主配置文件
+/etc/httpd/conf.d/   					 目录
+
+#vim /etc/httpd/conf/httpd.conf
+//改文件仅需要查看即可
+Listen 80			
+//服务器监听的端口
+DocumentRoot "/var/www/html"
+//网站的根路径在哪里，也就是页面存放的位置
+DirectoryIndex index.html
+//默认的首页叫什么名字
+#ServerName www.example.com:80
+//服务器的域名是什么
+IncludeOptional conf.d/*.conf
+//加载conf.d目录下的所有配置文件
+
++++++++++++++++++++++++++++++++++++++++
+实验（虚拟主机）
+一台服务器，安装一个httpd，做了一个网站（浪费）
+一台服务器，安装一个httpd，做n个网站
+虚拟主机类型：
+		基于IP地址（要求服务器有多个IP）
+		基于域名（要求卖多个域名)
+		基于端口
+
+#ping server0.example.com
+#ping www0.example.com
+#ping webapp0.example.com
+
+
+在server0主机创建基于域名的虚拟主机
+域名使用server0.example.com和www0.example.com
+# vim /etc/httpd/conf.d/server.conf
+//该文件不存在，需要手动创建
+<VirtualHost *:80>
+    ServerName server0.example.com
+		DocumentRoot /var/www/html
+</VirtualHost>
+# vim /etc/httpd/conf.d/www.conf
+//该文件不存在，需要手动创建
+<VirtualHost *:80>
+    ServerName www0.example.com
+		DocumentRoot /var/www/dachui
+</VirtualHost>
+# mkdir /var/www/dachui
+# vim /var/www/dachui/index.html
+大腿打退大腿
+# systemctl  restart httpd
+
+在desktop上操作:
+#curl http://server0.example.com
+//打开的是之前实验创建的第1个页面
+#curl http://www0.example.com
+//打开的是刚刚创建的第2个页面
+
+
+
 
 
 
