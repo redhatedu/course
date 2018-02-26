@@ -77,6 +77,8 @@ IncludeOptional conf.d/*.conf
     ServerName server0.example.com
 		DocumentRoot /var/www/html
 </VirtualHost>
+
+
 # vim /etc/httpd/conf.d/www.conf
 //该文件不存在，需要手动创建
 <VirtualHost *:80>
@@ -87,7 +89,6 @@ IncludeOptional conf.d/*.conf
 # vim /var/www/dachui/index.html
 大腿打退大腿
 # systemctl  restart httpd
-
 在desktop上操作:
 #curl http://server0.example.com
 //打开的是之前实验创建的第1个页面
@@ -95,6 +96,19 @@ IncludeOptional conf.d/*.conf
 //打开的是刚刚创建的第2个页面
 
 
++++++++++++++++++++++++++++++++++++
+网页的目录结构
+#cd /var/www/html/
+#vim index.html
+hello world
+#vim test.html
+nb is nb
+#mkdir haha
+#echo "xixi" > haha/index.html
+dekstop客户端访问：
+firefox http://server0.example.com
+firefox http://server0.example.com/test.html
+firefox http://server0.example.com/haha/index.html
 
 
 
