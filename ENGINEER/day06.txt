@@ -108,7 +108,7 @@ nb is nb
 dekstop客户端访问：
 firefox http://server0.example.com
 firefox http://server0.example.com/test.html
-firefox http://server0.example.com/haha/index.html
+firefox http://server0.example.com/haha/
 
 
 
