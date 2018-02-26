@@ -10,7 +10,7 @@ http://blog.51cto.com/manual
 
 ####################################################
 
-#download all materials（下载参考资料）
+#download all materials(下载参考资料,下面的操作需要电脑安装git软件)
 
 1.# yum -y install git
 
