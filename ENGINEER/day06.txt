@@ -9,6 +9,39 @@
 # git checkout 文件名                                  //下载某一个文件(必须在course目录下执行)
 #############################################################################
 
+今日主题：HTTP网站
+
+web服务器【把某个目录共享】放网页文件.html
+网站基于B/S设计（浏览器/服务器）
+在服务器上共享的文件都是：HTML
+软件包是:httpd
+在server上操作：
+
+
+#firewall-cmd --set-default-zone=trusted
+# yum -y install httpd
+//Apache基金会的httpd软件
+# systemctl start httpd
+//默认共享了/var/www/html/目录
+# cd /var/www/html/
+# ls
+# vim index.html
+<html>
+<head>
+<title>Hello world</title>
+</head>
+<body>
+<h1> HeHe</h1>
+<h2> Hehe</h2>
+<font color=red>约吗</font>
+</body>
+</html>
+
+
+
+
+
+
 
 
 
