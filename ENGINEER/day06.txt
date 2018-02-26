@@ -163,7 +163,7 @@ httpd这个软件，只能读写有httpd_sys_content_t
 #firefox http://server0.example.com/nb.html
 //因为SELinux的标签不对，所有无法访问
 
-在server主机
+在server主机(chcon命令可以修改上下文标签)
 # chcon -R -t 标签内容   文件或目录名
 # chcon -R -t httpd_sys_content_t /var/www/html/nb.html
 
