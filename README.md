@@ -5,16 +5,20 @@ Copyright @丁丁历险 $2018$
 http://blog.51cto.com/manual
 
 
+//可以直接使用浏览器访问https://github.com/redhatedu/course查看所有资料
 
-#####################################################
+
+####################################################
 
 #download all materials（下载参考资料）
 
-1.# git clone https://github.com/redhatedu/course.git      //(完整下载,第一次使用必须操作)
+1.# yum -y install git
 
-2.# git pull  	                      //(更新下载,必须在course目录下执行)
+2.# git clone https://github.com/redhatedu/course.git      //(完整下载,第一次使用必须操作)
 
-3.# git checkout 文件名			      //(仅下载某个文件,必须在course目录下执行)
+3.# git pull  	                      //(更新下载,必须在course目录下执行)
+
+4.# git checkout 文件名			      //(仅下载某个文件,必须在course目录下执行)
 
 #####################################################
 
