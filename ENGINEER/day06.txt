@@ -167,6 +167,19 @@ httpd这个软件，只能读写有httpd_sys_content_t
 # chcon -R -t 标签内容   文件或目录名
 # chcon -R -t httpd_sys_content_t /var/www/html/nb.html
 
+#firefox http://server0.example.com/nb.html
+//修改标签后，再次访问就可以成功
+
+# setenforce 0   //关闭SELinux
+# setenforce 1   //开启SELinux
+以后检查错误可能性：
+	1.防火墙
+	2.权限rwx不对
+	3.SElinux标签不对
+	4.配置文件，没启动服务
+
+
+
 
 
 
