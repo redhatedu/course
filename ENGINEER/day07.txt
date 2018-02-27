@@ -1,0 +1,77 @@
+#############################################################################
+本地班级下载笔记方法:
+# firefox ftp://172.40.50.118/course/ENGINEER/   //根据需要有选择下载
+远程班级下载笔记方法:
+# yum -y install git
+# git clone https://github.com/redhatedu/course        //完整下载(第一次使用必须操作)
+# cd course
+# git pull                                             //更新下载(必须在course目录下执行)
+# git checkout 文件名                                  //下载某一个文件(必须在course目录下执行)
+####################################################
+
+HTTPS网站加密
+
+HTTP是明文协议，网络中传输的任何数据都是明文
+包括用户和密码，如果有人抓包，所有数据都可以获得
+
+加密算法：
+      对称算法(AES,DES）
+      非对称算法(RSA,DSA)
+      信息摘要(md5,sha512,sha265)
+
+对称加密（加密和解密是一把钥匙)适合单机加密
+非对称密码(加密和解密不是一把钥匙)
+					公钥和私钥
+信息摘要:
+# md5sum  anaconda-ks.cfg	
+数据完整性校验(检查数据是否被人修改过)
+
+在server主机操作：
+# yum -y install mod_ssl
+//安装该软件包让httpd支持加密网站
+
+去classroom下载公钥(证书)
+#wget http://classroom/pub/tls/certs/server0.crt
+
+去classroom下载私钥
+#wget http://classroom/pub/tls/private/server0.key
+
+去classroom下载根证书(上面的私钥和公钥是谁提供的)
+#wget http://classroom/pub/example-ca.crt
+提示：这三个密钥原则上放哪都可以，但是有默认潜规则
+#cp server0.crt /etc/pki/tls/certs/
+#cp example-ca.crt /etc/pki/tls/certs/
+#cp server0.key /etc/pki/tls/private/
+
+#vim /etc/httpd/conf.d/server.conf
+<VirtualHost *:80>
+   ServerName server0.example.com
+   DocumentRoot /var/www/html/
+</VirtualHost>
+<VirtualHost *:443>  //加密端口是443
+   ServerName server0.example.com
+   DocumentRoot /var/www/html/
+	 SSLCertificateFile  /etc/pki/tls/certs/server0.crt
+//使用哪个密钥加密数据（公钥）
+    SSLCertificateKeyFile  /etc/pki/tls/private/server0.key
+//使用哪个密钥解密数据（私钥）
+    SSLCACertificateFile /etc/pki/tls/certs/example-ca.crt
+</VirtualHost>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
