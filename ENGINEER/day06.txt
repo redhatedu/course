@@ -200,16 +200,28 @@ python执行完会把结果给httpd，httpd把结果给用户
 # yum -y install mod_wsgi
 #vim /etc/httpd/conf.d/webapp.conf
 Listen 8909
-<VirtualHost *:8909>
+//开启一个端口
+<VirtualHost *:8909>  //使用前面开启的端口
    ServerName   webapp0.example.com
 	 DocumentRoot /var/www/webapp
+   WSGIScriptAlias /  /var/www/webapp/webinfo.wsgi
+//当你访问网站的根时，等同于访问/var/www/webapp/webinfo.wsgi脚本文件
 </VirtualHost>
 # mkdir /var/www/webapp/
 # cd /var/www/webapp/
 # wget http://classroom/pub/materials/webinfo.wsgi
+# systemctl restart httpd
+//重启失败，提示执行journalctl -xn
+//Selinux还控制谁能用什么端口
+//默认允许httpd使用80，443
+# semanage port -a -t http_port_t -p tcp 8909
+//使用selinux管理器命令修改端口配置
+//-a是添加一台规则
+//-t是指定http能使用什么端口
+//-p允许httpd使用tcp的8090端口
 
-
-
+客户端访问:
+firefox http://webapp0.example.com:8908
 
 
 
