@@ -62,11 +62,29 @@ HTTP是明文协议，网络中传输的任何数据都是明文
 加密访问，提示不安全,点击高级，添加例外
 
 
+++++++++++++++++++++++++++++++++++
+邮件系统(postfix)可以做类似于163的邮件系统
 
-
-
-
-
+#vim /etc/postfix/main.cf
+76:myhostname = server0.example.com
+//主机名
+83:mydomain = example.com
+//域名的后缀，邮箱的后缀
+99:myorigin = $mydomain
+//发件人的后缀
+116:inet_interfaces = all
+//允许所有人给自己发邮件，默认仅接收本机发的邮件
+164：mydestination = $myhostname, localhost.$mydomain, localhost
+//什么邮件我才接收
+#systemctl restart postfix
+++++++++++++++++++++++++++++++++++++
+#mail -s 标题    收件人
+内容
+内容
+.					//独立的点回车表示邮件内容结束
+#mail -s hello root
+hello the world
+.
 
 
 
