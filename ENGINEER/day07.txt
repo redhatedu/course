@@ -85,6 +85,39 @@ HTTP是明文协议，网络中传输的任何数据都是明文
 #mail -s hello root
 hello the world
 .
+#mail						//收取邮件，q退出
+
++++++++++++++++++++++++++++++++++++
+分区工具fdisk，parted
+
+fdisk分区只能分4个主分区
+fdisk分区每个分区最大只能是2T
+parted可以分超过4个主分区(128),分区大小可以大于2T
+
+parted分区首先要选择分区的类型msdos,gpt模式
+msdos就是fdisk使用的模式
+
+# parted /dev/vdb mklabel gpt
+//选择分区模式，可以是msdos或者gpt
+#parted /dev/vdb mkpart primary 1 2G
+//对/dev/vdb分区(mkpart),分主分区(primary)
+//从硬盘的第1M到1G之间的容量分一个分区
+#parted /dev/vdb mkpart primary 2G 5G
+#parted /dev/vdb mkpart primary 5G 6G
+#parted /dev/vdb print
+
+#mkfs.xfs /dev/vdb1
+
+#mkswap /dev/vdb2   		//创建交换分区
+//交换分区是把硬盘当内存使用的分区
+#vim /etc/fstab
+/dev/vdb2  swap  swap   defaults 0 0
+#mount -a
+
+
+#firefox http://127.0.0.1/exam
+
+
 
 
 
