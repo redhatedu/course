@@ -224,4 +224,11 @@ Listen 8909
 firefox http://webapp0.example.com:8908
 
 
+SELinux[
+提前写好规则
+	什么软件能读取什么标签的文件或目录
+	什么软件能使用什么端口
+]越安全，越麻烦
+
+
 
