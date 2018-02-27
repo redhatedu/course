@@ -170,21 +170,43 @@ httpd这个软件，只能读写有httpd_sys_content_t
 #firefox http://server0.example.com/nb.html
 //修改标签后，再次访问就可以成功
 
-# setenforce 0   //关闭SELinux
-# setenforce 1   //开启SELinux
+# setenforce 0   	//关闭SELinux
+# setenforce 1   	//开启SELinux
 以后检查错误可能性：
 	1.防火墙
 	2.权限rwx不对
 	3.SElinux标签不对
 	4.配置文件，没启动服务
 
++++++++++++++++++++++++++++++++++
+静态页面：html、mp3、flv、jpg、gif等都是静态
+动态页面：需要被服务器的解释器解释的页面
+				java,php,python,shell
+动态页面是需要解释器解释的！！！！
+httpd这个软件本身不能解释java,php,python代码
 
+在server0操作（延续之前的实验，要求已经安装了httpd)
+#yum -y install mod_wsgi
+(mod_wsgi该软件可以让httpd与python交互)
+//当用户要访问一个python脚本时，httpd可以把页面脚本给python执行一遍，然后把执行的结果给用户)
+									 mod_wsgi
+client<---->httpd<----------->python
+用户请求a.py,httpd就把a.py交给python执行
+python执行完会把结果给httpd，httpd把结果给用户
 
-
-
-
-
-
+做第3个虚拟主机（这个网站是基于python动态网站）
+要求：域名使用webapp0.example.com
+		  端口使用8909
+# yum -y install mod_wsgi
+#vim /etc/httpd/conf.d/webapp.conf
+Listen 8909
+<VirtualHost *:8909>
+   ServerName   webapp0.example.com
+	 DocumentRoot /var/www/webapp
+</VirtualHost>
+# mkdir /var/www/webapp/
+# cd /var/www/webapp/
+# wget http://classroom/pub/materials/webinfo.wsgi
 
 
 
