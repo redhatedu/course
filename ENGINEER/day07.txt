@@ -43,23 +43,23 @@ HTTP是明文协议，网络中传输的任何数据都是明文
 #cp example-ca.crt /etc/pki/tls/certs/
 #cp server0.key /etc/pki/tls/private/
 
-#vim /etc/httpd/conf.d/server.conf
-<VirtualHost *:80>
-   ServerName server0.example.com
-   DocumentRoot /var/www/html/
-</VirtualHost>
+#vim /etc/httpd/conf.d/ssl.conf
 <VirtualHost *:443>  //加密端口是443
-   ServerName server0.example.com
-   DocumentRoot /var/www/html/
-	 SSLCertificateFile  /etc/pki/tls/certs/server0.crt
+59: ServerName server0.example.com
+60: DocumentRoot /var/www/html/
+100:SSLCertificateFile  /etc/pki/tls/certs/server0.crt
 //使用哪个密钥加密数据（公钥）
-    SSLCertificateKeyFile  /etc/pki/tls/private/server0.key
+107:SSLCertificateKeyFile  /etc/pki/tls/private/server0.key
 //使用哪个密钥解密数据（私钥）
-    SSLCACertificateFile /etc/pki/tls/certs/example-ca.crt
+122:SSLCACertificateFile /etc/pki/tls/certs/example-ca.crt
 </VirtualHost>
+#systemctl restart httpd
 
-
-
+客户端验证：
+#firefox http://server0.example.com
+非加密，因为用的是http
+#firefox https://server0.example.com
+加密访问，提示不安全,点击高级，添加例外
 
 
 
