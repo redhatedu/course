@@ -201,6 +201,68 @@ vim的三种模式：命令模式，编辑模式，末行模式
 									   仅替换当前行的所有内容
 		:%s/旧/新/				替换所有行的第1个
 		:%s/旧/新/g				替换所有行的所有内容
+		:3,5s/旧/新/g			替换3到5行的所有内容
+		:set nu					显示行号
+		:set nonu				不显示行号
+
++++++++++++++++++++++++++++++++++++++
+源码包安装软件
+
+二进制包可以安装软件[rpm,exe,msi,deb...]
+源码--->编译--->二进制
+
+
+
+Linux的软件多数都免费，开源
+二进制包装软的缺点:
+（不愿意花时间去封装二进制)
+有写开源软件会封装成二进制，但时间会很久
+没办法自定义
+
+如何在Linux中源码编译安装软件
+1.下载源码包
+# firefox ftp://172.40.50.118/course/SERVICE/inotify-tools-3.13.tar.gz
+
+# scp inotify-tools-3.13.tar.gz 172.25.0.11:/root/
+//把文件的inotify-tools-3.13.tar.gz拷贝到
+172.25.0.11电脑的/root/目录
+
+2.登陆server0使用源码安装软件
+# tar -xf inotify-tools-3.13.tar.gz
+//解压
+#cd inotify-tools-3.13/
+//计算机的系统软件一般都是用c语言写的
+//如QQ,office,windows,linux,画图,播放器
+
+# ./configure  检查你的计算机环境
+# yum -y install gcc
+//gcc是linux里面的一个C语言的解释器
+# ./configure  检查环境，不报错没有Error
+# make
+//用gcc解释器把源码转换为二进制
+# make install
+//把编译好的二进制程序安装到你的计算机
+
+# inotifywait 这个能tab出来（说明成功)
+
+//备注：执行./configure --prefix=/路径
+//configure可以通prefix参数，指定安装路径
+//如果没有指定prefix，则默认一般在/usr/local/
+
+
+
+inotify-tools这个软件可以监控你的计算机目录
+# inotifywait -mrq  /root/
+
+再开一个终端，在/root目录做一些操作
+#touch /root/tmp.txt
+#echo "1" > /root/1.txt
+#rm /root/1.txt
+
+
+
+
+
 
 
 
