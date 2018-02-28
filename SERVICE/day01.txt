@@ -1,0 +1,14 @@
+chmod +r   文件名或目录
+chmod +rwx 文件名或目录
+chmod u+rw 文件或目录
+r：读，w：写，x：执行
+r=4,w=2,x=1
+rw=6
+rwx=7
+r-x=5
+使用数字修改权限：
+#chmod nnn 文件或目录
+#chmod 777 文件或目录
+#chmod 000 文件或目录
+
+
