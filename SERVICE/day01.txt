@@ -254,13 +254,31 @@ Linux的软件多数都免费，开源
 inotify-tools这个软件可以监控你的计算机目录
 # inotifywait -mrq  /root/
 
-再开一个终端，在/root目录做一些操作
+再开一个窗口终端，在/root目录做一些操作
 #touch /root/tmp.txt
 #echo "1" > /root/1.txt
 #rm /root/1.txt
 
+++++++++++++++++++++++++++++++++++
+systemctl命令
 
+# systemctl -t service
+//列出启动的服务
+# systemctl -t service --all
+//列出所有的服务,包括没启动的
 
+# systemctl stop 服务名称
+//当前关闭，重启无效
+# systemctl disable 服务名称
+//永久关闭
+# systemctl enable 服务名称
+//开机自启
+# systemctl start 服务名称
+//当前立刻启动（重启无效）
+# systemctl restart 服务名称
+//重启服务
+# systemctl status 服务名称
+//查看某个服务的状态（是否启动）
 
 
 
