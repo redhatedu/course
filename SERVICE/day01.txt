@@ -10,5 +10,30 @@ r-x=5
 #chmod nnn 文件或目录
 #chmod 777 文件或目录
 #chmod 000 文件或目录
+#chmod 077 文件或目录
+
+附加权限：
+SUID，SGID，sticky
+
+仅能对程序设置SUID（有效）
+/usr/bin/passwd(root root)程序属于root用户
+以普通用户去执行这个命令(有SUID的命令),执行该命令时会获得root的权限
+
+在有sticky权限的目录下（仅对目录可以设置）
+在这个目录下的任何文件，仅文件所有者可以删除
+谁的文件谁删除
+
+suid=4,sgid=2,sticky=1
+
+chmod nnnn  文件或目录
+第1个n是特殊权限，第2个n是用户权限
+第3个n是组权限，   第4个n是其他人权限
+# chmod 7777  文件（结果rwsrwsrwt）
+# chmod 1777  文件  (结果rwxrwxrwt)
+# chmod 6777  文件（结果rwsrwsrwx)
+
+
+
+
 
 
