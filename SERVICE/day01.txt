@@ -98,7 +98,54 @@ ln命令（给文件或目录创建快捷方式，链接）
 # ln /root/123.txt  /cc.txt
 
 +++++++++++++++++++++++++++++++++++++
+查看帮助的方法
+# 命令 -h
+# 命令 --help
+# man 命令
+		对man帮助是可以/搜索
 
++++++++++++++++++++++++++++++++++++
+压缩：
+
+linux压缩常用格式:gzip,bz2,zip
+windwos压缩:rar(商业),zip
+
+# zip -r  my.zip  /var/log
+//把/var/log目录给压缩，压缩到当前目录,my.zip
+
+# unzip my.zip
+//把my.zip解压到当前
+# unzip my.zip -d /tmp
+//把my.zip解压到/tmp
+++++++++++++++++++++++++++++++++++
+
+网络yum源
+
+1.自定义yum服务器（真实机操作）
+做yum源（yum服务器）【把一堆软件包共享】
+	a)需要有RPM软件包
+  b)数据库
+repodata/          仓库档案数据
+	filelists.xml.gz //软件包的文件安装清单
+	primary.xml.gz  	//软件包的基本/主要信息
+	other.xml.gz  		//软件包的其他信息
+	repomd.xml     	//提供.xml.gz下载和校验信息
+
+# mkdir /var/www/html/rhel
+# vim /etc/fstab
+/iso/rhel-server-7.4-x86_64-dvd.iso /var/www/html/rhel/  iso9660  defaults,loop 0 0
+# mount -a
+备注：在光盘里有Packages，里面都是RPM包
+		repodata目录，里面有相关数据库
+# systemctl restart httpd
+
+2.客户端配置repo使用yum源
+#vim /etc/yum.repo.d/abc.repo
+[abc]
+name=redhat
+baseurl=http://172.25.0.250/rhel
+gpgcheck=0
+#yum clean all
 
 
 
