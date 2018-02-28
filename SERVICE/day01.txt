@@ -148,6 +148,25 @@ gpgcheck=0
 #yum clean all
 
 
+++++++++++++++++++++++++++++++++++++
+
+
+#firefox ftp://172.40.50.118/course/SERVICE/
+other.zip和inotify-tools-3.13.tar.gz
+#firefox https://github.com/redhatedu/course/
+
+自己从网络上下载的若干软件，把这些软件做成yum源
+# unzip other.zip -d /var/www/html/
+# ls /var/www/html/other
+# createrepo /var/www/html/other
+//给/var/www/html/other目录下RPM软件自动生成数据库
+
+客户端配置xx.repo去调用yum源
+
+
+
+
+
 
 
 
