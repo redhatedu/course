@@ -63,19 +63,41 @@ date查看计算机时间
 # date +%Y%m%d     年月日year,moth,day
 # date +%Y:%m:%d
 # date +%H:%M:%S		小时分钟秒
+# date +%Y-%m-%d %H:%M
+
 
 # date -s "年-月-日 时:分:秒"       //修改计算机时间
 # date -s "11:01"					  //仅修改时间
 # date -s "2088-12-1 12:12"
 
 
+++++++++++++++++++++++++++++++++++++
+ln命令（给文件或目录创建快捷方式，链接）
+1.软链接
+	 软链接不占用空间，但是源文件删除，链接失败
+2.硬链接
+     硬链接不占用空间，源文件可以删除，链接依然能用
 
+软链接:（注意：做链接一定要用绝对路径）
+# echo "123" > /root/123.txt
+# ln -s /root/123.txt /abc.txt
+给/root/123.txt创建了一个软链接在/abc.txt
+# cat /abc.txt    //可以打开
+# rm -rf /root/123.txt
+# cat /abc.txt			//打不开
+# rm -rf /abc.txt   //把没用软链接删除
 
+硬链接:（注意：做链接一定要用绝对路径）
+# echo "123" > /root/123.txt
+# ln  /root/123.txt /abc.txt
+给/root/123.txt创建了一个硬链接在/abc.txt
+# cat /abc.txt    //可以打开
+# rm -rf /root/123.txt
+# cat /abc.txt			  //依然可以不开
+# ln /roo/123.txt   /qq.txt
+# ln /root/123.txt  /cc.txt
 
-
-
-
-
++++++++++++++++++++++++++++++++++++++
 
 
 
