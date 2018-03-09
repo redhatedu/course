@@ -1,0 +1,94 @@
+wget ftp://172.40.50.118/share/shell/nginx-1.8.0.tar.gz
+
+wget ftp://172.40.50.118/share/shell/day07.txt
+
+1.一键部署[nginx源码包,麻烦]
+vim test.sh
+	#!/bin/bash
+	tar -xf nginx-1.8.0.tar.gz
+	cd nginx-1.8.0
+	yum -y install gcc pcre-devel openssl-devel
+	./configure
+	make
+	make install
+
+验证: ls /usr/local/nginx/有内容
+
+++++++++++++++++++++++++++++++++++++++++++
+
+2.启动服务的脚本
+	刚刚安装的nginx,不受systemctl管理
+	启动: /usr/local/nginx/sbin/nginx[没提示,成功]
+	关闭:/usr/local/nginx/sbin/nginx -s stop
+	报错: Address already in use [把httpd关掉]
+	注意:同一个端口,用时不能被两个程序使用
+vim test.sh
+#!/bin/bash
+case $1 in
+start)
+		开启服务;;
+stop)
+		关闭服务;;
+restart)
+		关闭服务
+		启动服务;;
+status)
+		netstat -ntulp |grep nginx
+		判断是否启动:提示已经启动或已经关闭;;
+*)
+		echo Error;;
+esac
+
+#./test.sh status
+#./test.sh start
+#./test.sh  xxx
+
+
+++++++++++++++++++++++++++++++++++++++++
+3.监控脚本(awk过滤):
+		cpu负载:  uptime  2核CPU满值是2
+										4核CPU满值是4
+		网卡流量:  ifconfig eth0
+						RX是接受的数据流量
+						TX是发送出去的数据流量
+		内存剩余:free
+		根分区的剩余容量:df
+		当前计算机的账户数量: wc -l /etc/passwd
+		登陆了几个人:who
+		当前开启的进程数量:  ps aux |wc -l
+		已经安装了多少软件: rpm -qa |wc -l
+
+++++++++++++++++++++++++++++++++++++++
+4.检查/var/log/secure看看有没有人尝试破解密码
+
+	awk '/Failed/{print $11}' /var/log/secure >> ip.txt
+	写一个防火墙规则,把她DROP
+	
++++++++++++++++++++++++++++++++++++++++++++
+5.写一个进度条脚本
+
+#!/bin/bash
+jindu(){
+while :
+do
+	echo -ne '\033[43m \033[0m'
+	sleep 0.3
+done
+}
+jindu &
+cp -r  $1  $2
+kill $!
+
+
+
+
+
+
+
+
+
+
+
+
+
+
