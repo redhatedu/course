@@ -1,12 +1,12 @@
-wget ftp://172.40.50.118/share/shell/nginx-1.8.0.tar.gz
+wget ftp://172.40.50.118/share/shell/nginx-1.10.3.tar.gz
 
 wget ftp://172.40.50.118/share/shell/day07.txt
 
 1.一键部署[nginx源码包,麻烦]
 vim test.sh
 	#!/bin/bash
-	tar -xf nginx-1.8.0.tar.gz
-	cd nginx-1.8.0
+	tar -xf nginx-1.10.3.tar.gz
+	cd nginx-1.10.3
 	yum -y install gcc pcre-devel openssl-devel
 	./configure
 	make
@@ -22,6 +22,7 @@ vim test.sh
 	关闭:/usr/local/nginx/sbin/nginx -s stop
 	报错: Address already in use [把httpd关掉]
 	注意:同一个端口,用时不能被两个程序使用
+
 vim test.sh
 #!/bin/bash
 case $1 in
@@ -78,13 +79,6 @@ done
 jindu &
 cp -r  $1  $2
 kill $!
-
-
-
-
-
-
-
 
 
 
