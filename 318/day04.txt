@@ -1,0 +1,61 @@
+虚拟机镜像的共享
+
+存储域在跨数据中心之间不能共享
+存储域：Data域，ISO域，export域
+
+借助于export域，可以实现虚拟机跨数据中心共享
+export导入导出域
+
+1.在RHEVM主机创建一个NFS共享目录
+#mkdir -p  /export/export
+#chown 36.36 /export/export/
+#vim /etc/exports
+/export/rhevisos	*(rw)
+/export/export	        *(rw)
+#/etc/init.d/nfs restart
+
+2.火狐登陆rhevm管理界面
+创建export域
+Storage--->New Domain
+Name:exp0
+Data Centet:选源数据中心
+Type:选择export/NFS
+Path:rhevm.podX.example.com:/export/export
+点击OK
+
+3.把虚拟机导入到export（虚拟机需要关机）
+Virtual Machinies---选择需要的虚拟机
+右击，选择export
+勾选Collapse，点击OK
+
+4.查看
+在Storage--->exp0--->Vm import
+可以看到虚拟机
+或者在RHEVM主机的NFS共享目录下
+cd /export/export/UUID/images/UUID
+
+5(可选)
+#yum -y install libguestfs-tools
+#guestfish -i --selinux -w -a /export/export/UUID/images/UUID/虚拟机镜像文件
+
+#guestmount -i -a /export/export/UUID/images/UUID/虚拟机镜像文件   挂载目录
+
+
+6.export从源上解除绑定
+Storage--->选择导入导出域exp0
+在下面选Data Center--->Maintenance
+点击detach
+
+
+7.把export域跟令一个数据中心绑定
+点击attch，选择目标数据中心
+
+8.从export域，把虚拟机导入并启动
+Storage----选择expo0
+下面选择Vm import---import
+填写虚拟机名称:xx
+
+
+http://classroom.example.com/content/day04.txt
+
+
