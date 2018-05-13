@@ -58,4 +58,70 @@ Storage----选择expo0
 
 http://classroom.example.com/content/day04.txt
 
+https://github.example.com/redhatedu/course/
+点击318, 点击day03.txt
+点击318，点击day04.txt
 
+
+
+++++++++++++++++++++++++++++++
+创建虚拟机模版
+
+1.把虚拟机的唯一性数据删除
+#rm -f /etc/ssh/ssh_host_*
+#hostnamectl set-hostname "localhost"
+#vi /etc/sysconfig/network-scripts/ifcfg-eth0
+删除UUID和MAC地址
+#rm -rf /var/log/*
+#lsblk
+#vi /etc/fstab
+修改磁盘挂载信息
+#ls /etc/pki/tls/private
+看看是否有私钥
+#subscription-manager unregister
+注销红帽正版的ID账户
+
+2.关闭虚拟机，创建模版
+Virutal Machines ---->选择虚拟机
+右击，make template
+填写，name和description
+选择合适的集群，点击OK
+
+在顶级菜单Templates中找刚刚创建的模版
+
++++++++++++++++++++++++++++++++++
+使用模版创建虚拟机
+Virtual Machones--->New VM
+
+Based on Template:选择刚刚创建的模版
+Name:填写虚拟机名称
+点击OK
+
+
++++++++++++++++++++++++++++++++++++
+1.基于模版创建虚拟机池
+Pools--->New
+选数据中心和集群
+Data certer:
+Cluster:
+Name:填写名称
+Description：描述信息
+Number of VMs:50
+Based on Template:选择刚刚创建的模版
+Maximum unber of VMs per user:每个人最多使用几个
+
+
+
+2.修改池子的属性
+Pools选择刚刚创建的池子，点击Edit
+Prestarted VMs：预先启动几个虚拟机
+Increase number：需要再增加几个
+
+3.给用户授予使用池子的权限
+pools--->选择池子--点击下面的permissions
+
+
+
+
+4.注销管理员账户
+  重新登陆web页面，从User Portal登陆
