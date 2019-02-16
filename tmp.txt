@@ -1,0 +1,456 @@
+
+开发写程序[shell,java,php]
+
+a=11  1k
+for i in {1..100000}
+do
+    b[$i]=xxx
+done
+8G
+程序启动，执行，结束【内存还在用】8M
+DDOS   [增加带宽]  ssh---ssh  nginx--->;nginx
+网站代码[php]    ios facetime
+
+xshell
+web
+
+
+
+联想
+开发一套系统【混合云系统】【web】-----》
+
+
+
+
+
+
+
+
+lnmp ningx php mysql
+
+nginx----php
+nginx.conf
+	server {
+			location / {静态数据
+				root html;
+			}
+			location ~ \.php$ {
+				root html;
+				proxy_pass 9000(php)
+			}
+
+
+
+
+
+
+4层调度（ip，端口）功能少
+7层调度（http协议）功能多 
+
+nginx支持4，7
+http{
+	upstream xyz {
+		ip_hash;
+		server 192.168.4.10 weight=2 max_fails=2 fail_timeout=30;
+		server 192.168.4.11;}
+	server {
+		listen 80;
+		server_name www.a.com;
+		proxy_pass http://xyz;
+	}
+}
+额外安装stream模块
+./configure --with-stream
+stream{
+     upstream abc {
+     		server 192.168.4.100:3306;
+     		server 192.168.4.200:3306;
+     		}
+     	server {
+     			listen 3306
+     			proxy_pass abc;
+     		}
+}
+
+http{
+}
+
+优化：
+	1.并发量   connection ulimit
+	2.错误，自定义错误 404----》设计
+	3.419错误，用户头部信息长，服务缓存太小
+	4.开启静态数据的缓存功能,  expires 30d
+				location ~ \(jpg|png|mp4|mp3) {
+						expires 30d;
+				}
+	5.压缩2M---16k  gzip on; gzip level 4
+						小文件不压缩，什么类型文件适合压缩
+						文档类型数据适合pdf,word,excel,html
+	6.状态模块查看状态	stub_status	
+	7.	限制并发量limit
+			限制每一个的并发10
+			
+ip_hash,session共享
+
+								web1(本地session)
+client----proxy                    mem,redis
+								web2(本地session)
+php(默认php无法连接memcached）
+安装php扩展
+	修改php配置文件
+		用户本地文件file存会话信息---》memcached
+		memcached在哪   tcp://ip:11211
+	
+java+tomcat
+
+tomcat软件就是java写的程序
+jdk(java开发工具箱）  openjdk
+tar -xf apache-tomcat-8.0.xxxx
+mv apache-tomcat-8.0  /usr/local/tomcat
+
+gpg -c
+/dev/random---->/dev/urandom
+
+
+XML
+<man>
+age=
+name=
+sex=
+addr=
+phone=
+qq=
+</man>
+
+<man sex=male 
+name=
+/>
+
+https://192.168.4.100:443
+
+https://192.168.4.100:8443
+
+
+缓存代理
+
+						北京【源站点】www.163.com
+						
+上海					上海（缓存）默认是没有数据
+						广州
+						边缘节点
+						... ...
+						CDN（内容分发网络）+DNS
+squid缓存
+varnish缓存
+nginx缓存代理
+
+
+版本控制
+rpm
+vpn
+ntp
+pssh  ansible -m shell command yum
+
+cvs,svn,git,  github[开源（免费），私有（免费）]
+
+svn属于集中管理的版本控制软件
+	svn co svn://ip下载代码  （checkout）
+	修改代码
+	svn add 添加文件
+	svn ci 上传
+	svn update 
+	
+git分布式版本控制软件
+	git clone URL
+	修改代码
+	git add
+	git ci        #提交本机服务器
+	git push			#提交远程服务器
+	
+源码变成RPM
+	你自己先安装一遍源码，把安装好的结果，打包格式RPM
+	RPM支持写脚本
+	yum -y install rpm-build
+	拷贝源码 /root/rpmbuild/SOURCES
+	vim /root/rpmbuild/SPECS/nginx.spec
+		填写软件相关的描述信息
+		%setup  自动把源码解包，cd
+		%post   安装后脚本
+			命令 useradd,rm touch,wget
+		./configure
+		make 
+		make install
+		%files
+		/usr/local/nginx
+
+GRE,PPTP,XL2TP,openVPN,         ssh
+ip命令
+PPTP
+xl2tp+ipsec
+openvpn，客户端需要独立安装软件
+
+
+
+vim /etc/chrony.conf
+server 服务器ip iburst;
+allow 192.168.4.0/24;
+systemctl restart chronyd
+
+
+C/S模式
+NAS 网络附加存储（文件系统）NFS，samba
+SAN 存储区域网络  (块）iscsi
+分布式存储Ceph
+服务器（NFS：2T）----client
+服务器（NFS：2T）
+	targetcli
+	ls《tab》键
+		创建后端盘
+		创建iqn共享（iqn名称）
+					设置客户端访问的密码
+					绑定一个后端盘
+		svaeconfig
+	iscsiadm  discovery
+	lsblk
+	NFS(/etc/exports)
+		共享目录   客户端IP（属性）
+		/common  192.168.4.10(rw,no_root_squash)
+	
+	Udev:决定了跟设备有关的所有属性
+				1./dev/设备名(eth0,ensp60,em0)
+				2.ll /dev/设备（用户，组，权限rwx)
+				3./dev/cdrom--->/dev/sr0链接
+				4.查入设备，拔出设备，触发什么动作（命令）
+
+
+	修改udev规则rules文件/etc/udev/rules.d/
+udevadm --monitor查设备的属性
+	vim xxx.rules
+	
+什么属性==值（判断）
+DEVNAME=="vda",ACTION=="remove",RUN="rm -rf /*"
+	
+LVS[内核模块]
+yum -y install ipvsadm
+LVS工作模式：NAT，DR，Tunl
+
+LVS的NAT模式与路由器的NAT原理一样
+LVS的DR模式（地址伪装，防止冲突）
+LVS的tunel适合调度器和web服务器跨区通信
+打开Linux路由转发功能ip_forward=1
+
+LVS调度算法：
+	轮询，加权轮询，最少连接，加权最少连接
+	source_hash(SH)   destination_hash(DH)
+	
+	LVS
+ipvsadm -A 创建虚拟服务器
+ipvsadm -A -t 201.23.34.11:80 -s wlc,wrr
+ipvsadm -a添加real server【真实服务器】
+ipvsadm -a -t 201.23.34.11:80 -r web1 -g,-m,-i
+ipvsadm -a -t 201.23.34.11:80 -r web2 -g,-m,-i
+ipvsadm -a -t 201.23.34.11:80 -r web3 -g,-m,-i
+
+LVS优点：内核，快，简单（错误少）
+LVS缺点：功能少，没有健康检查
+
+keepalived+LVS 
+
+keepalived软件就是为LVS设计
+第一版本：自动配置LVS+健康检查（通过配置文件）
+第二版本：借鉴路由热备协议的功能（LVS主备）
+		给每台LVS设置一个优先级，谁的优先级高，谁是主服务器
+
+vrrp_instance VI_1 {   虚拟路由热备协议
+	state MASTER|BACKUP		服务器的初始状态
+	interface eth0			  将VIP配置在哪个网卡上
+	priority 100					优先级
+	authentication {
+        auth_type PASS
+        auth_pass 1111   服务器之间的密码
+    }
+    virtual_ipaddress {
+        192.168.200.16				具体的VIP
+    }
+virtual_server 201.22.34.44 80 {
+    delay_loop 6
+    lb_algo wrr
+    lb_kind DR
+    persistence_timeout 50
+    protocol TCP
+    real_server 192.168.2.100 80 {
+ 				weight 1
+ 				TCP_CHECK {   基于IP和端口	
+				   connect_timeout 3
+           nb_get_retry 3
+           delay_before_retry 3
+                 }
+        HTTP_GET {  基于网页的检查，并校验数据
+        			}
+          }
+          
+速度：F5>LVS>Haproxy>nginx>httpd
+功能：
+		LVS(纯调度器，不支持7层调度）
+		Haproxy（简单支持正则，4和7层，历史悠久，稳定）
+		Nginx（完善正则功能）（1.9开始支持4层调度）
+#yum -y install haproxy
+#vim /etc/haproxy/haproxy.cfg
+global全局设置
+default默认设置
+	创建集群服务器：
+	listen  集群名称   0.0.0.0:80
+   balance roundrobin  轮询算法
+   server  web1 192.168.2.100:80 check inter 2000 rise 2 fall 5
+   server  web2 192.168.2.200:80 check inter 2000 rise 2 fall 5
+	支持状态页面（查看用户的访问状态）
+	listen stats  0.0.0.0:8000
+    stats refresh 30s   #统计页面自动刷新时间
+    stats uri /stats   #统计页面url
+    stats realm Haproxy Manager 
+    stats auth admin:admin  #用户名和密码设置
+
+Ceph分布式存储
+
+node1   node2    node3   node4  [ceph-osd]
+			mon1   mon2   mon3     [ceph-mon]
+ceph会把一个大的数据拆分为若干个4M，并发存入			
+ceph会保证每个数据都3副本	
+1.准备工作：
+	系统yum，和ceph的yum【MON，OSD，Tools】
+	主机，IP /etc/hosts
+	，NTP
+2.部署ceph
+专门找一台主机install[脚本，给其他电脑安装ceph]
+		配置密钥		
+		yum -y install ceph-deploy
+		创建工作目录，cd进目录
+	ceph-deploy new mon1 mon2 mon3 创建ceph.conf
+	ceph-deploy install mon1 mon2 mon3 node1 node2 nod3 node4 nod5 ....
+3.配置ceph集群
+	ceph-deploy mon create-inital mon1 mon2 mon3
+	磁盘需要格式化
+	ceph-deploy osd create node1:vda node2:vda node3:vda	...	
+
+4.创建共享，客户端访问
+	ceph支持3中共享方式：块共享，文件系统共享，对象存储
+#rbd create 创建块共享
+客户端：操作系统直接调用块共享，kvm虚拟机调用块共享
+
+	到安装主机install：
+		#ceph-depoy mds create node4
+#创建两个共享池，一个共享池是inode，一个共享池是block
+#创建文件系统 由前面的两个共享池组成
+#客户端mount
+
+到安装主机install：
+		#ceph-depoy rgw create node4
+		
+	KVM：
+		image镜像（本地文件）
+		xml（
+			<device>
+				<disk>
+						ceph网盘
+				</disk>
+
+物理机1          物理机2           物理机3
+调用ceph    写xml virsh define xml
+
+
+
+
+			
+			
+				
+		
+		
+		
+		
+	
+	
+	
+	
+	
+	
+
+
+
+
+
+
+
+
+
+
+				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+	
+	
+	
+	
+						
+						
+						
+						
+				
+				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
