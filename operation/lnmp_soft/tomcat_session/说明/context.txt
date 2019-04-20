@@ -1,0 +1,9 @@
+<Context>
+  ...
+  <Manager className="de.javakaffee.web.msm.MemcachedBackupSessionManager"
+    memcachedNodes="n1:host1.yourdomain.com:11211,n2:host2.yourdomain.com:11211"
+    failoverNodes="n1"
+    requestUriIgnorePattern=".*\.(ico|png|gif|jpg|css|js)$"
+    transcoderFactoryClass="de.javakaffee.web.msm.serializer.kryo.KryoTranscoderFactory"
+    />
+</Context>
